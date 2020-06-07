@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>User</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+
+        <div class="w3-cell-row" id="myTarget">
+
+            <div class="w3-cell">
+                <div class="w3-card-4">
+                    <img src="" id="userAvatar" style="width: 100%; border: 1px solid black;border-radius: 4px; padding: 5px;">
+                    <div class="w3-container w3-center" id="userDisplay" style="font-size: 20px; text-shadow:1px 1px 0 #444; font-family: none;">
+                        <p id="userName" style="margin: 5px"></p>
+                        <p id="userEmail" style="margin: 5px"></p>
+                        <p id="userAge" style="margin: 5px"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-cell" style="padding-left: 10px">
+                <form class="w3-container w3-card-4" id="update-form" style="padding-top: 0px">
+                    <p>
+                        <label class="w3-text-black"><b>Name</b></label>
+                        <input class="w3-input w3-border" id="update-name" type="text"></p>
+                    <p>
+                        <label class="w3-text-black"><b>Age</b></label>
+                        <input class="w3-input w3-border" id="update-age" type="number"></p>
+                    <p>
+                        <label class="w3-text-black"><b>Email</b></label>
+                        <input class="w3-input w3-border" id="update-email" type="text"></p>
+                    <p>
+                        <label class="w3-text-black"><b>Password</b></label>
+                        <input class="w3-input w3-border" id="update-password" type="password"></p>
+                    <p>
+                        <button class="w3-btn w3-black">Update My Profile</button></p>
+                </form>
+
+                <div class="user-button">
+
+                    <button class="w3-btn w3-black" id='logout'>Logout This Device</button></p>
+                    <button class="w3-btn w3-black" id='logoutAll'>Logout All Devices</button></p>
+                    <button class="w3-btn w3-black" id='delete'>Delete My Account</button></p>
+                    <button class="w3-btn w3-black" id='deleteAvatar'>Delete My Avatar</button></p>
+
+                    <form class="upload-form">
+                        <div class="upload-button">
+                            <input type="file" id="avatar">
+                        </div>
+                        <div class="upload-button">
+                            <button class="w3-btn w3-black" id="uploadButton">Upload Avatar</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    {{>footer}}
+    <script src="js/user.js"></script>
+</body>
+
+</html>
