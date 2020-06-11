@@ -37,7 +37,6 @@ function init() {
             })
     } else {
         document.getElementById("myTarget").remove();
-        alert('You are not logged in')
     }
 }
 
