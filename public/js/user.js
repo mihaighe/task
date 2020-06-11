@@ -28,7 +28,7 @@ function init() {
             }
         }).then(res => res.json())
             .then(user => {
-                userAvatar.src = 'http://localhost:3000/users/' + user._id + '/avatar'
+                userAvatar.src = '/users/' + user._id + '/avatar'
                 console.log(userAvatar)
                 userName.textContent = user.name
                 userEmail.textContent = user.email
