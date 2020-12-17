@@ -1,81 +1,110 @@
-const taskForm = document.querySelector('#taskForm')
-const taskDescription = document.querySelector('#taskDescription')
-const descending = document.querySelector('#descending')
-const ascending = document.querySelector('#ascending')
-const finished = document.querySelector('#finished')
-const unfinished = document.querySelector('#unfinished')
+const taskForm = document.querySelector("#taskForm");
+const taskDescription = document.querySelector("#taskDescription");
+const descending = document.querySelector("#descending");
+const ascending = document.querySelector("#ascending");
+const finished = document.querySelector("#finished");
+const unfinished = document.querySelector("#unfinished");
 
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    token = localStorage.getItem('token')
-    if (token != null) getTasks('asc')
-    else document.getElementById("myTarget").remove();
-
-   
+  token = localStorage.getItem("token");
+  if (token != null) getTasks("asc");
+  else document.getElementById("myTarget").remove();
 }
 
 function getTasks(sortQuery, completedQuery) {
+  if (completedQuery != undefined)
+    taskUrl =
+      "/tasks?sortby=createdAt:" + sortQuery + "&completed=" + completedQuery;
+  else taskUrl = "/tasks?sortBy=createdAt:" + sortQuery;
 
-    if (completedQuery != undefined) taskUrl = '/tasks?sortby=createdAt:' + sortQuery + '&completed=' + completedQuery
-    else taskUrl = '/tasks?sortBy=createdAt:' + sortQuery
+  fetch(taskUrl, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  })
+    .then((res) => res.json())
+    .then((tasks) => {
+      container = document.getElementById("taskContainer");
+      container.innerHTML = "";
 
-    fetch(taskUrl, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    }).then(res => res.json())
-        .then(tasks => {
-            let id = 0
-            let str = '<ul class="w3-ul w3-card-4">'
-            tasks.forEach(task => {
-                str += '<li class="w3-bar"><i class="fas fa-pen"></i>'
-                str += '<div class="w3-bar-item" id=' + id +'>'; id++
-                if (task.completed == true) str += '<input class="w3-check" checked="true" type="checkbox">'
-                else str += '<input class="w3-check" type="checkbox">'
-                str += '<span style="padding-left: 10px" class="w3-large">' + task.description + '</span><button class="w3-button" id="deleteButton">X</button></div></li>'
-            })
-            str += '</ul>'
-            document.getElementById("taskContainer").innerHTML = str;
-        })
+      tasks.forEach((task) => {
+        formatedDate = formatDate(task.updatedAt);
+        checked = task.completed ? "checked" : "";
+        var renderTask = `<div id="${task._id}" class="task">
+            <div>${task.description}</div>
+            <div>${formatedDate}
+            <button class="deleteButton"><i class="fas fa-eraser"></i></button>
+            <button class="deleteButton"><i class="fas fa-pen-square"></i></button>
+            <input style="margin-left: 6px" class="w3-check w3-black" type="checkbox" ${checked}>
+            </div>
+        </div>`;
+        container.innerHTML += renderTask;
+      });
+    });
 }
 
+function formatDate(date) {
+  var month = new Array();
+  month[0] = "Jan";
+  month[1] = "Feb";
+  month[2] = "Mar";
+  month[3] = "Apr";
+  month[4] = "May";
+  month[5] = "Jun";
+  month[6] = "Jul";
+  month[7] = "Aug";
+  month[8] = "Sep";
+  month[9] = "Oct";
+  month[10] = "Nov";
+  month[11] = "Dec";
 
-taskForm.addEventListener('submit', (e) => {
-    token = localStorage.getItem('token')
+  myDate = new Date(Date.parse(date));
+  m = month[myDate.getMonth()];
+  d = myDate.getDate();
+  hh = myDate.getHours();
+  mm = myDate.getMinutes();
 
-    const task = {
-        description: taskDescription.value,
-    }
+  d = d < 10 ? `0${d}` : d;
+  hh = hh < 10 ? `0${hh}` : hh;
+  mm = mm < 10 ? `0${mm}` : mm;
 
-    fetch('/tasks?', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify(task)
-    })
-        .then(res => res.json())
-        .then(data => {
+  return `${m} ${d} - ${hh}:${mm}`;
+}
 
-        })
-})
+taskForm.addEventListener("submit", (e) => {
+  token = localStorage.getItem("token");
 
-ascending.addEventListener('click', () => {
-    getTasks('asc')
-})
+  const task = {
+    description: taskDescription.value,
+  };
 
-descending.addEventListener('click', () => {
-    getTasks('desc')
-})
+  fetch("/tasks?", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(task),
+  })
+    .then((res) => res.json())
+    .then((data) => {});
+});
 
-finished.addEventListener('click', () => {
-    getTasks(undefined, 'true')
-})
+ascending.addEventListener("click", () => {
+  getTasks("asc");
+});
 
-unfinished.addEventListener('click', () => {
-    getTasks(undefined, 'false')
-})
+descending.addEventListener("click", () => {
+  getTasks("desc");
+});
 
+finished.addEventListener("click", () => {
+  getTasks(undefined, "true");
+});
+
+unfinished.addEventListener("click", () => {
+  getTasks(undefined, "false");
+});

@@ -52,13 +52,7 @@ label {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-button {
-  cursor: pointer;
-  border: 1px solid #888888;
-  background: #888888;
-  color: white;
-  padding: 8px;
-}
+
 
 #geolocation-button {
   padding: 8px 93px;
@@ -134,14 +128,14 @@ button {
 }
 
 .moustache {
-  margin-top: -38px;
+  margin-top: -43px;
   width: 60%;
   height: 34%;
 }
 
 .mongodb {
   width: 140%;
-  height: 42%;
+  height: 45%;
 }
 
 .express {
@@ -172,3 +166,30 @@ button {
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
 }
+
+.myTasks {
+  overflow-y: scroll;
+  width: inherit;
+  border-top: 1px solid #dddddd;
+  margin-top: 2px;
+}
+
+.task {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px;
+}
+
+.deleteButton {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+
+.w3-check {
+  width: 20px;
+}
+

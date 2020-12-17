@@ -4,35 +4,36 @@
 
 <head>
     <title>Task</title>
+    <link rel="shortcut icon" href="./img/js.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    
 </head>
 
 <body>
     <div class="main-content">
         {{>header}}
-        <div id="myTarget" class="w3-container w3-card-4" style="padding-bottom: 20px">
-            <form id="taskForm" class="w3-container" style="padding-top: 20px">
-                <input id="taskDescription" autocomplete="off"
-                    class="w3-input w3-center w3-large w3-border w3-animate-input" placeholder="Insert a new task"
-                    type="text" style="width:30%">
-            </form>
-            <div class="w3-center">
-                <div class="w3-bar" style="padding-top: 1px;">
-                    <a class="w3-button" id="ascending">Ascending</a>
-                    <a class="w3-button" id="descending">Descending</a>
-                    <a class="w3-button" id="finished">Finished</a>
-                    <a class="w3-button" id="unfinished">Unfinished</a>
+        <div id="myTarget" class="container shadow flexing">
+
+            <div style="align-items:unset;">
+                <div class="w3-bar">
+                    <a class="w3-button w3-black" id="ascending">Ascending</a>
+                    <a class="w3-button w3-black" id="descending">Descending</a>
+                    <a class="w3-button w3-black" id="finished">Finished</a>
+                    <a class="w3-button w3-black" id="unfinished">Unfinished</a>
                 </div>
             </div>
-            <div id="taskContainer">
+            <form id="taskForm" style="margin-top: 8px; margin-left: -568px;">
+                <input id="taskDescription" autocomplete="off" class="w3-input w3-border"
+                    placeholder="Insert a new task" type="text" >
+            </form>
+            <div id="taskContainer" class="myTasks">
 
             </div>
         </div>
-
-    </div>
     {{>footer}}
+    </div>
     <script src="js/task.js"></script>
 </body>
 
