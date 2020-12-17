@@ -11,22 +11,22 @@
 <body>
     <div class="main-content">
         {{>header}}
+        <div class="container" id="myTarget">
 
-        <div class="w3-cell-row" id="myTarget">
+            {{!-- Container 1 --}}
+            <div class="small-container shadow" style="margin-right: 10px;">
+                <img src="" id="userAvatar" class="shadow" style="width: 100%">
 
-            <div class="w3-cell">
-                <div class="w3-card-4">
-                    <img src="" id="userAvatar" style="width: 100%; border: 1px solid black;border-radius: 4px; padding: 5px;">
-                    <div class="w3-container w3-center" id="userDisplay" style="font-size: 20px; text-shadow:1px 1px 0 #444; font-family: none;">
-                        <p id="userName" style="margin: 5px"></p>
-                        <p id="userEmail" style="margin: 5px"></p>
-                        <p id="userAge" style="margin: 5px"></p>
-                    </div>
+                <div class="w3-center avatarInfo" id="userDisplay">
+                    <p id="userName" class="border"></p>
+                    <p id="userEmail" class="border">></p>
+                    <p id="userAge" class="border">></p>
                 </div>
             </div>
 
-            <div class="w3-cell" style="padding-left: 10px">
-                <form class="w3-container w3-card-4" id="update-form" style="padding-top: 0px">
+            {{!-- Container 1 --}}
+            <div class="small-container shadow">
+                <form id="update-form" style="padding: 5px 15px 5px 15px;">
                     <p>
                         <label class="w3-text-black"><b>Name</b></label>
                         <input class="w3-input w3-border" id="update-name" type="text"></p>
@@ -42,26 +42,42 @@
                     <p>
                         <button class="w3-btn w3-black">Update My Profile</button></p>
                 </form>
-
-                <div class="user-button">
-
-                    <button class="w3-btn w3-black" id='logout'>Logout This Device</button></p>
-                    <button class="w3-btn w3-black" id='logoutAll'>Logout All Devices</button></p>
-                    <button class="w3-btn w3-black" id='delete'>Delete My Account</button></p>
-                    <button class="w3-btn w3-black" id='deleteAvatar'>Delete My Avatar</button></p>
-
-                    <form class="upload-form">
-                        <div class="upload-button">
-                            <input type="file" id="avatar">
-                        </div>
-                        <div class="upload-button">
-                            <button class="w3-btn w3-black" id="uploadButton">Upload Avatar</button>
-                        </div>
-                    </form>
-
-                </div>
-
             </div>
+
+            {{!-- Container 1 --}}
+            <div class="small-container shadow flexing" style="margin-left: 10px; padding-top: 50px">
+                <button class="w3-btn w3-black myButton" id='logout'>Logout This Device</button>
+                <button class="w3-btn w3-black myButton" id='logoutAll'>Logout All Devices</button>
+                <button class="w3-btn w3-black myButton" id='delete'>Delete My Account</button>
+                <button class="w3-btn w3-black myButton" id='deleteAvatar'>Delete My Avatar</button>
+
+                <form class=""> 
+                    <div>
+                        <input class="myinput" type="file" id="avatar">
+                    </div>
+                    <div class="flexing">
+                        <button class="w3-btn w3-black myButton" id="uploadButton">Upload Avatar</button>
+                    </div>
+                </form>
+            </div>
+
+
+            {{!-- 
+            <button class="w3-btn w3-black" id='logout'>Logout This Device</button></p>
+            <button class="w3-btn w3-black" id='logoutAll'>Logout All Devices</button></p>
+            <button class="w3-btn w3-black" id='delete'>Delete My Account</button></p>
+            <button class="w3-btn w3-black" id='deleteAvatar'>Delete My Avatar</button></p>
+
+            <form>
+                <div>
+                    <input class="myinput" type="file" id="avatar">
+                </div>
+                <div>
+                    <button class="w3-btn w3-black" id="uploadButton">Upload Avatar</button>
+                </div>
+            </form> --}}
+
+
         </div>
 
 

@@ -1,89 +1,128 @@
 body {
-    color: #333333;
-    font-family: arial;
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  color: #333333;
+  font-family: arial;
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main-content {
-    flex-grow: 1;
-    
+  flex-grow: 1;
 }
 
 footer {
-    color: #888888;
-    border-top: 1px solid #eeeeee;
-    margin-top: 16px;
-    padding: 16px 0;
+  color: #888888;
+  border-top: 1px solid #eeeeee;
+  margin-top: 16px;
+  padding: 16px 0;
 }
 
 header {
-    margin-top: 16px;
-    margin-bottom: 48px;
+  margin-top: 16px;
+  margin-bottom: 48px;
 }
 
 h1 {
-    font-size: 64px;
-    margin-bottom: 16px;
+  font-size: 64px;
+  margin-bottom: 16px;
 }
 
 header a {
-    color: #888888;
-    margin-right: 16px;
-    text-decoration: none;
+  color: #888888;
+  margin-right: 16px;
+  text-decoration: none;
 }
 
 .portrait {
-    width: 400px;
+  width: 400px;
 }
 
 input {
-    border: 1px solid #cccccc;
-    padding: 8px;
+  border: 1px solid #cccccc;
+  padding: 8px;
 }
 
 button {
-    cursor: pointer;
-    border: 1px solid #888888;
-    background: #888888;
-    color: white;
-    padding: 8px
+  cursor: pointer;
+  border: 1px solid #888888;
+  background: #888888;
+  color: white;
+  padding: 8px;
 }
 
 #geolocation-button {
-    padding: 8px 93px
+  padding: 8px 93px;
 }
 
 .column {
-    float: left;
-    padding: 10px;
+  float: left;
+  padding: 10px;
 }
 
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.user-button {
-    display: flex;
-    flex-direction: column;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .login-width {
-    width: 90%;
+  width: 96%;
 }
 
-.upload-button {
+/* .userDisplay {
     display: flex;
     flex-direction: column;
+} */
+
+.underline {
+  border: 2px solid black;
+  width: fit-content;
+  box-shadow: 2px 2px;
+  padding-left: 10px;
 }
 
-.userDisplay {
-    display: flex;
-    flex-direction: column;
+.myinput {
+  width: 100%;
 }
+
+.container {
+  width: 750px;
+  height: 450px;
+  display: flex;
+}
+
+.small-container {
+  width: 33.33%;
+  background-color: rgba(255, 255, 255, 0.918);
+}
+
+.shadow {
+  box-shadow: 3px 0px 8px 0px #888888;
+  padding: 5px;
+}
+
+.avatarInfo {
+  font-size: 20px;
+  text-shadow: 1px 1px 0 black;
+  font-family: none;
+}
+
+.border {
+  border: 1px solid black;
+  margin: 12px;
+  border-radius: 2px;
+}
+
+.flexing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.myButton{
+  margin: 8px;
+  width: 170px;
+}
+
