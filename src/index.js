@@ -7,7 +7,7 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
     res.render('index', {
-        title: 'Welcome',
+        title: 'Token-based auth',
         name: 'Mihai Ghe'
     })
 })
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.get('/user', (req, res) => {
     
     res.render('user', {
-        title: 'UserProfile',
+        title: 'CRUD Operations',
         name: 'Mihai Ghe'
     })
 })
