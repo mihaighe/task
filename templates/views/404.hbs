@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <title>404</title>
     <link rel="shortcut icon" href="">
@@ -8,11 +9,15 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
-
 <body>
-    <div class="main-content">
+    <div>
         {{>header}}
-        <p>{{errorMessage}}</p>
+
+        <div class="container shadow">
+            <img class="notFound" src="./img/404.png" alt="404">
+            <p style="margin-left: -20px">{{errorMessage}}</p>
+
+        </div>
     </div>
     {{>footer}}
 </body>

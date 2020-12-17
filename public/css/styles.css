@@ -156,6 +156,12 @@ button {
   height: 22%;
 }
 
+.notFound {
+  margin-top: -25px;
+  margin-left: 55px;
+  width: 86%;
+  height: 107%;
+}
 
 .formPadding {
   padding: 5px 15px 5px 15px;

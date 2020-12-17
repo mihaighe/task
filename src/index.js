@@ -30,8 +30,8 @@ app.get('/task', (req, res) => {
 
 app.get('*', (req, res) => {
     res.render('404', {
-        title: '404',
+        title: 'Page not found',
         name: 'Mihai Ghe',
-        errorMessage: 'Page not found.'
+        errorMessage: 'Thanks to whoever made this png!'
     })
 })
