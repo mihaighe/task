@@ -8,32 +8,34 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    
+
 </head>
 
 <body>
-    <div class="main-content">
-        {{>header}}
-        <div id="myTarget" class="container shadow flexing">
+    <div>
+        <div class="main-content">
+            {{>header}}
+            <div id="myTarget" class="container shadow flexing">
 
-            <div style="align-items:unset;">
-                <div class="w3-bar">
-                    <a class="w3-button w3-black" id="ascending">Ascending</a>
-                    <a class="w3-button w3-black" id="descending">Descending</a>
-                    <a class="w3-button w3-black" id="finished">Finished</a>
-                    <a class="w3-button w3-black" id="unfinished">Unfinished</a>
+                <div style="align-items:unset;">
+                    <div class="w3-bar">
+                        <a class="w3-button w3-black" id="ascending">Ascending</a>
+                        <a class="w3-button w3-black" id="descending">Descending</a>
+                        <a class="w3-button w3-black" id="finished">Finished</a>
+                        <a class="w3-button w3-black" id="unfinished">Unfinished</a>
+                    </div>
+                </div>
+                <form id="taskForm" style="margin-top: 8px; margin-left: -568px;">
+                    <input id="taskDescription" autocomplete="off" class="w3-input w3-border"
+                        placeholder="Insert a new task" type="text">
+                </form>
+                <div id="taskContainer" class="myTasks">
+
                 </div>
             </div>
-            <form id="taskForm" style="margin-top: 8px; margin-left: -568px;">
-                <input id="taskDescription" autocomplete="off" class="w3-input w3-border"
-                    placeholder="Insert a new task" type="text" >
-            </form>
-            <div id="taskContainer" class="myTasks">
-
-            </div>
         </div>
-    {{>footer}}
     </div>
+    {{>footer}}
     <script src="js/task.js"></script>
 </body>
 
