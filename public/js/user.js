@@ -153,25 +153,6 @@ uploadButton.addEventListener("click", (e) => {
     });
 });
 
-// // USER UPLOAD AVATAR
-// uploadButton.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   token = localStorage.getItem("token");
-//   let myFile = document.getElementById("avatar").files[0];
-//   let fd = new FormData();
-//   fd.append("avatar", myFile);
-
-//   fetch("/users/me/avatar", {
-//     method: "POST",
-//     headers: {
-//       Authorization: "Bearer " + token,
-//     },
-//     body: fd,
-//   }).then((res) => {
-//     if (res.status == 200) alert("Avatar uploaded");
-//   });
-// });
-
 // DELETE AVATAR
 deleteAvatar.addEventListener("click", (e) => {
   token = localStorage.getItem("token");
