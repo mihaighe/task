@@ -11,10 +11,15 @@ document.body.addEventListener("click", function (event) {
   firstClass = event.target.classList[0];
 
   if (secondClass == "fa-pen-square") {
+    id = event.target.parentElement.parentElement.id;
     element = event.target.parentElement.parentElement.previousElementSibling;
-    text = element.innerText
-    element.innerHTML = `<input class="w3-input w3-border taskInput" value="${text}" type="text">`
-
+    text = element.innerText;
+    element.innerHTML = `<form id="subForm"><input id="subDesc" class="w3-input w3-border taskInput" autocomplete="off" placeholder="${text}" type="text"></form>`;
+    subForm = document.querySelector("#subForm");
+    subDesc = document.querySelector("#subDesc");
+    subForm.addEventListener("submit", (e) => {
+      updateTask(id, subDesc.value)
+    });
   } else if (secondClass == "fa-eraser") {
     id = event.target.parentElement.parentElement.id;
     element = event.target.parentElement.parentElement.parentElement;
@@ -22,9 +27,14 @@ document.body.addEventListener("click", function (event) {
   } else if (firstClass == "w3-check") {
     id = event.target.parentElement.id;
     flag = event.target.checked;
-    booleanTask(id, flag);
+    updateTask(id, flag);
   }
 });
+
+function myFunction(id, text) {
+  console.log(id);
+  console.log(text);
+}
 
 function init() {
   token = localStorage.getItem("token");
@@ -49,13 +59,16 @@ function deleteTask(element, id) {
   });
 }
 
-function booleanTask(id, value) {
-  console.log(id);
-  console.log(value);
-
-  const task = {
-    completed: value,
-  };
+function updateTask(id, value) {
+  if (value == true || value == false) {
+    task = {
+      completed: value,
+    };
+  } else {
+    task = {
+      description: value,
+    };
+  }
 
   fetch(`/task/${id}`, {
     method: "PUT",
