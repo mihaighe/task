@@ -128,10 +128,10 @@ router.post(
       .toBuffer();
     req.user.avatar = buffer;
     await req.user.save();
-    res.status(200).send();
+    res.status(200).send({ message: 'Upload completed'});
   },
   (error, req, res, next) => {
-    res.status(400).send({ error: error.message });
+    res.status(400).send({ message: error.message });
   }
 );
 
