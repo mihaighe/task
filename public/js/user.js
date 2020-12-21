@@ -53,6 +53,7 @@ logoutButton.addEventListener("click", () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      alert("You are now logged out");
     })
     .catch((err) => {
       console.log(err);
@@ -71,6 +72,7 @@ logoutAllButton.addEventListener("click", () => {
   })
     .then((res) => res.json())
     .then((data) => {
+      alert("You are now logged out from all your devices");
       console.log(data);
     })
     .catch((err) => {
@@ -90,6 +92,7 @@ deleteButton.addEventListener("click", () => {
   })
     .then((res) => res.json())
     .then((data) => {
+      alert("Your account has been deleted");
       console.log(data);
     })
     .catch((err) => {
@@ -110,6 +113,7 @@ updateForm.addEventListener("submit", (e) => {
     age: updateAge.value,
     password: updatePassword.value,
   };
+
   fetch("/users/me", {
     method: "PUT",
     headers: {
@@ -118,22 +122,19 @@ updateForm.addEventListener("submit", (e) => {
     },
     body: JSON.stringify(user),
   })
+    .then((res) => res.json())
     .then((data) => {
-      if (data.error) {
-        alert(data.error);
+      if (!data._id) {
+        for (let key in data) alert(data[key]);
       } else {
-        alert("Update");
+        alert("Update successful");
       }
-    })
-    .catch((err) => {
-      console.log(err);
     });
 });
 
 // USER UPLOAD AVATAR
 uploadButton.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log("works");
   token = localStorage.getItem("token");
   let myFile = document.getElementById("avatar").files[0];
   let fd = new FormData();
@@ -145,6 +146,8 @@ uploadButton.addEventListener("click", (e) => {
       Authorization: "Bearer " + token,
     },
     body: fd,
+  }).then((res) => {
+    if (res.status == 200) alert("Avatar uploaded");
   });
 });
 
@@ -157,7 +160,9 @@ deleteAvatar.addEventListener("click", (e) => {
     headers: {
       Authorization: "Bearer " + token,
     },
-  }).then((res) => console.log(res.status));
+  }).then((res) => {
+    if (res.status == 200) alert("Avatar deleted");
+  });
 });
 
 function defaultImg() {

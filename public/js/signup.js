@@ -32,7 +32,7 @@ signupForm.addEventListener("submit", (e) => {
         }
       } else {
         localStorage.setItem("token", data.token);
-        alert("Account has been created. You can now view your tasks!");
+        alert("Account has been created.");
       }
     })
     .catch((err) => alert(err));
@@ -58,7 +58,7 @@ loginForm.addEventListener("submit", (e) => {
         alert(data.error);
       } else {
         localStorage.setItem("token", data.token);
-        alert("You can now view your tasks");
+        alert("Login completed");
       }
     })
     .catch((err) => {

@@ -17,7 +17,7 @@
 
                 {{!-- Container --}}
                 <div class="small-container shadow" style="margin-right: 10px;">
-                    <img  id="userAvatar" class="shadow avatarImage" onerror='defaultImg()'>
+                    <img id="userAvatar" class="shadow avatarImage" onerror='defaultImg()'>
 
                     <div class="w3-center avatarInfo" id="userDisplay">
                         <p id="userName" class="border"></p>
@@ -47,13 +47,12 @@
                 </div>
 
                 {{!-- Container --}}
-                <div class="small-container shadow flexing" style="margin-left: 10px; padding-top: 24px">
+                <div class="small-container shadow flexing" style="margin-left: 10px; padding-top: 35px">
                     <button class="w3-btn w3-black myButton" id='logout'>Logout This Device</button>
                     <button class="w3-btn w3-black myButton" id='logoutAll'>Logout All Devices</button>
                     <button class="w3-btn w3-black myButton" id='delete'>Delete My Account</button>
-                    <button class="w3-btn w3-black myButton" id='deleteAvatar'>Delete My Avatar</button>
 
-                    <form style="padding-top: 23px">
+                    <form>
                         <div>
                             <input class="myinput" type="file" id="avatar">
                         </div>
@@ -61,6 +60,8 @@
                             <button class="w3-btn w3-black myButton" id="uploadButton">Upload Avatar</button>
                         </div>
                     </form>
+                    <button class="w3-btn w3-black myButton" id='deleteAvatar'>Delete My Avatar</button>
+
                 </div>
             </div>
 

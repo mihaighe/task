@@ -50,10 +50,6 @@ router.post("/users/logout", auth, async (req, res) => {
   } catch (e) {
     res.status(500).send();
   }
-});
-
-// USER LOGOUT ALL
-router.post("/users/logoutAll", auth, async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
@@ -71,7 +67,6 @@ router.get("/users/me", auth, async (req, res) => {
 // USER UPDATE
 router.put("/users/me", auth, async (req, res) => {
   const updates = Object.keys(req.body);
-
   const allowedUpdates = ["name", "email", "password", "age"];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
@@ -80,14 +75,22 @@ router.put("/users/me", auth, async (req, res) => {
   if (!isValidOperation) {
     return res.status(400).send({ error: "Invalid updates!" });
   }
-
   try {
-    updates.forEach((update) => (req.user[update] = req.body[update]));
-    console.log(req.user);
+    updates.forEach((update) => {
+      if (req.body[update] != "") req.user[update] = req.body[update];
+    });
     await req.user.save();
     res.send(req.user);
   } catch (e) {
-    res.status(400).send();
+    if (e.name === "ValidationError") {
+      let errors = {};
+      Object.keys(e.errors).forEach((key) => {
+        errors[key] = e.errors[key].message;
+      });
+      console.log(errors);
+      return res.status(422).send(errors);
+    }
+    res.status(422).send({ error: "Email is already taken" });
   }
 });
 
@@ -125,7 +128,7 @@ router.post(
       .toBuffer();
     req.user.avatar = buffer;
     await req.user.save();
-    res.send();
+    res.status(200).send();
   },
   (error, req, res, next) => {
     res.status(400).send({ error: error.message });
@@ -151,7 +154,7 @@ router.get("/users/:id/avatar", async (req, res) => {
     res.set("Content-Type", "image/png");
     res.send(user.avatar);
   } catch (e) {
-    res.status(404).send("noAvatar");
+    res.send("noAvatar");
   }
 });
 
