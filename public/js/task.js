@@ -6,6 +6,26 @@ const unfinished = document.querySelector("#unfinished");
 
 document.addEventListener("DOMContentLoaded", init);
 
+document.body.addEventListener("click", function (event) {
+  secondClass = event.target.classList[1];
+  firstClass = event.target.classList[0];
+
+  if (secondClass == "fa-pen-square") {
+    element = event.target.parentElement.parentElement.previousElementSibling;
+    text = element.innerText
+    element.innerHTML = `<input class="w3-input w3-border taskInput" value="${text}" type="text">`
+
+  } else if (secondClass == "fa-eraser") {
+    id = event.target.parentElement.parentElement.id;
+    element = event.target.parentElement.parentElement.parentElement;
+    deleteTask(element, id);
+  } else if (firstClass == "w3-check") {
+    id = event.target.parentElement.id;
+    flag = event.target.checked;
+    booleanTask(id, flag);
+  }
+});
+
 function init() {
   token = localStorage.getItem("token");
   if (token != null) getTasks("oldest");
@@ -15,6 +35,37 @@ function init() {
 let finish = false;
 let unfinish = false;
 let old = true;
+
+function deleteTask(element, id) {
+  fetch(`/tasks/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  }).then((res) => {
+    if (res.status == 200) {
+      element.remove();
+    }
+  });
+}
+
+function booleanTask(id, value) {
+  console.log(id);
+  console.log(value);
+
+  const task = {
+    completed: value,
+  };
+
+  fetch(`/task/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(task),
+  }).then();
+}
 
 function getTasks(status) {
   if (status == "finish") {
@@ -27,10 +78,10 @@ function getTasks(status) {
 
   if (old == 1) {
     sort = "asc";
-    oldest.innerText = 'Old first'
+    oldest.innerText = "Old first";
   } else {
     sort = "desc";
-    oldest.innerText = 'New first'
+    oldest.innerText = "New first";
   }
 
   if (finish == 1 && unfinish == 0) {
@@ -69,9 +120,9 @@ function getTasks(status) {
       tasks.forEach((task) => {
         formatedDate = formatDate(task.updatedAt);
         checked = task.completed ? "checked" : "";
-        var renderTask = `<div id="${task._id}" class="task">
+        var renderTask = `<div  class="task">
             <div>${task.description}</div>
-            <div>${formatedDate}
+            <div id="${task._id}">${formatedDate}
             <button class="deleteButton"><i class="fas fa-eraser"></i></button>
             <button class="deleteButton"><i class="fas fa-pen-square"></i></button>
             <input style="margin-left: 6px" class="w3-check w3-black" type="checkbox" ${checked}>
@@ -79,6 +130,12 @@ function getTasks(status) {
         </div>`;
         container.innerHTML += renderTask;
       });
+
+      // deleteButton = document.querySelector("#deleteButton");
+      // deleteButton.addEventListener('click', (e) => {
+      //   e.preventDefault()
+      //   console.log('works');
+      // })
     });
 }
 
