@@ -1,7 +1,6 @@
 const taskForm = document.querySelector("#taskForm");
 const taskDescription = document.querySelector("#taskDescription");
-const descending = document.querySelector("#descending");
-const ascending = document.querySelector("#ascending");
+const oldest = document.querySelector("#oldest");
 const finished = document.querySelector("#finished");
 const unfinished = document.querySelector("#unfinished");
 
@@ -9,15 +8,52 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
   token = localStorage.getItem("token");
-  if (token != null) getTasks("asc");
+  if (token != null) getTasks("oldest");
   else document.getElementById("myTarget").remove();
 }
 
-function getTasks(sortQuery, completedQuery) {
-  if (completedQuery != undefined)
-    taskUrl =
-      "/tasks?sortby=createdAt:" + sortQuery + "&completed=" + completedQuery;
-  else taskUrl = "/tasks?sortBy=createdAt:" + sortQuery;
+let finish = false;
+let unfinish = false;
+let old = true;
+
+function getTasks(status) {
+  if (status == "finish") {
+    finish = !finish;
+  } else if (status == "unfinish") {
+    unfinish = !unfinish;
+  } else if ((status = "oldest")) {
+    old = !old;
+  }
+
+  if (old == 1) {
+    sort = "asc";
+    oldest.innerText = 'Old first'
+  } else {
+    sort = "desc";
+    oldest.innerText = 'New first'
+  }
+
+  if (finish == 1 && unfinish == 0) {
+    finished.classList.add("active");
+    unfinished.classList.remove("active");
+    completed = true;
+  } else if (finish == 0 && unfinish == 1) {
+    finished.classList.remove("active");
+    unfinished.classList.add("active");
+    completed = false;
+  } else {
+    completed = "";
+  }
+
+  if (finish == 1 && unfinish == 1) {
+    finished.classList.add("active");
+    unfinished.classList.add("active");
+  } else if (finish == 0 && unfinish == 0) {
+    finished.classList.remove("active");
+    unfinished.classList.remove("active");
+  }
+
+  taskUrl = "/tasks?sortBy=createdAt:" + sort + "&completed=" + completed;
 
   fetch(taskUrl, {
     method: "GET",
@@ -93,18 +129,14 @@ taskForm.addEventListener("submit", (e) => {
     .then((data) => {});
 });
 
-ascending.addEventListener("click", () => {
-  getTasks("asc");
-});
-
-descending.addEventListener("click", () => {
-  getTasks("desc");
+oldest.addEventListener("click", () => {
+  getTasks("oldest");
 });
 
 finished.addEventListener("click", () => {
-  getTasks(undefined, "true");
+  getTasks("finish");
 });
 
 unfinished.addEventListener("click", () => {
-  getTasks(undefined, "false");
+  getTasks("unfinish");
 });

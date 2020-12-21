@@ -23,7 +23,7 @@ app.get('/user', (req, res) => {
 app.get('/task', (req, res) => {
     
     res.render('task', {
-        title: 'Task',
+        title: 'My Tasks',
         name: 'Mihai Ghe'
     })
 })

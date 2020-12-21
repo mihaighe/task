@@ -52,8 +52,6 @@ label {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-
-
 #geolocation-button {
   padding: 8px 93px;
 }
@@ -188,11 +186,19 @@ label {
   background: none;
 }
 
-
 .w3-check {
   width: 20px;
 }
 
 .avatarImage {
   width: 100%;
+}
+
+.active {
+  background-color: seagreen!important;
+  font-weight: bold;
+}
+
+#oldest {
+  width: 100px;
 }
